@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Blog Manager</title>
+ <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>;
+ <style>
+   table, th, td { border: 1px solid black; border-collapse: collapse; padding: 10px; }
+   .hidden { display: none; }
+ </style>
+</head>
+<body>
+ <h1>Blog Manager</h1>
+
+
+ <form id="addBlogForm">
+   <input type="text" id="new-title" placeholder="Title" required>
+   <input type="text" id="new-content" placeholder="Content" required>
+   <button type="submit">Add Blog</button>
+ </form>
+
+ <hr>
+
+
+ <table>
+   <thead>
+     <tr><th>Title</th><th>Content</th><th>Actions</th></tr>
+   </thead>
+   <tbody id="blogTable">
+     {% for blog in blogs %}
+     <tr data-id="{{ blog.id }}">
+       <td class="title">{{ blog.title }}</td>
+       <td class="content">{{ blog.content }}</td>
+       <td>
+         <button class="edit">Edit</button>
+         <button class="update hidden">Update</button>
+         <button class="cancel hidden">Cancel</button>
+         <button class="delete">Delete</button>
+       </td>
+     </tr>
+     {% endfor %}
+   </tbody>
+ </table>
+
+<script>
+    $('#addBlogForm').on('submit',function (e){
+        e.preventDefault();
+        const title =$('#new-title').val();
+        const content = $('#new-content').val();
+        $.ajax({
+            url: "api/blog",
+            method : "POST",
+            data : JSON.stringify({
+                "title":title,
+                "content":content
+            }),
+            success:function (){
+                location.reload()
+            }
+
+        });
+
+    })
+
+    $("#blogTable").on('click','.edit',function (){
+        const row = $(this).closest('tr');
+        row.find('.edit, .delete').hide();
+        row.find('.update, .cancel').show();
+        row.find('.title, .content').attr('contenteditable',true).focus
+    });
+    $("#blogTable").on('click','.cancel',function (){
+        location.reload()
+    });
+    $
+</script>

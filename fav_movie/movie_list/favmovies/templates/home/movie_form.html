@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if edit %}Edit{% else %}Add{% endif %} Movie</title>
+</head>
+<body>
+    <h1>{% if edit %}Edit{% else %}Add{% endif %} Movie</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if edit %}Update{% else %}Submit{% endif %}</button>
+    </form>
+    <a href="{% url 'movie_list' %}">← Back to Movie List</a>
+</body>
+</html>

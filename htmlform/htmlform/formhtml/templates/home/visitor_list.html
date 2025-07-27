@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Visitor List</title>
+</head>
+<body>
+    <h2>Visitor List</h2>
+    <a href="{% url 'create' %}">+ Add New Visitor</a>
+    <ul>
+        {% for visitor in visitors %}
+            <li>
+                <strong>{{ visitor.name }}</strong> ({{ visitor.email }}, {{ visitor.phone }})<br>
+                Purpose: {{ visitor.purpose }}<br>
+                <a href="{% url 'edit' visitor.id %}">Edit</a> |
+                <a href="{% url 'delete' visitor.id %}">Delete</a>
+            </li>
+        {% empty %}
+            <li>No visitors found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

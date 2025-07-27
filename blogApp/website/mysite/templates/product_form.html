@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+        form, table {
+            margin-top: 20px;
+        }
+        input, textarea {
+            margin: 5px;
+            padding: 8px;
+            width: 200px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        button {
+            padding: 6px 12px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Add Product</h2>
+    <form id="productForm" method="POST">
+        {% csrf_token %}
+        <input type="text" name="ProductName" placeholder="Name" required>
+        <input type="number" name="productPrice" placeholder="Price" required>
+        <textarea name="productDescription" placeholder="Description" required></textarea>
+        <button type="submit">Add Product</button>
+    </form>
+
+    <h2>Product List</h2>
+    <table id="productTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr id="row-{{ product.id }}">
+                    <td>{{ product.ProductName }}</td>
+                    <td>{{ product.productPrice }}</td>
+                    <td>{{ product.productDescription }}</td>
+                    <td>
+                        <button onclick="editProduct({{ product.id }}, '{{ product.ProductName }}', '{{ product.productPrice }}', '{{ product.productDescription }}')">Edit</button>
+                        <button onclick="deleteProduct({{ product.id }})">Delete</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        // Function to read CSRF token from cookie
+        function getCSRFToken() {
+            let cookies = document.cookie.split(';');
+            for (let cookie of cookies) {
+                const [name, value] = cookie.trim().split('=');
+                if (name === 'csrftoken') return value;
+            }
+            return '';
+        }
+
+        // Add Product
+        const form = document.getElementById('productForm');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+
+            fetch('/product/create/', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCSRFToken()
+                },
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Product Added!");
+                    location.reload();
+                } else {
+                    alert("Failed to add product.");
+                }
+            });
+        });
+
+        // Delete Product
+        function deleteProduct(id) {
+            if (confirm("Delete this product?")) {
+                fetch(/product/delete/${id}/, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': getCSRFToken()
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Deleted!");
+                        document.getElementById(row-${id}).remove();
+                    }
+                });
+            }
+        }
+
+        // Edit Product
+        function editProduct(id, name, price, desc) {
+            const newName = prompt("Enter new name", name);
+            const newPrice = prompt("Enter new price", price);
+            const newDesc = prompt("Enter new description", desc);
+
+            const formData = new FormData();
+            formData.append('ProductName', newName);
+            formData.append('productPrice', newPrice);
+            formData.append('productDescription', newDesc);
+
+            fetch(/product/edit/${id}/, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCSRFToken()
+                },
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Updated!");
+                    location.reload();
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if edit %}Edit{% else %}Add{% endif %} Visitor</title>
+</head>
+<body>
+    <h2>{% if edit %}Edit{% else %}Add{% endif %} Visitor</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>Name:</label><br>
+        <input type="text" name="name" value="{{ visitor.name|default:'' }}"><br><br>
+
+        <label>Phone No:</label><br>
+        <input type="text" name="number" value="{{ visitor.phone|default:'' }}"><br><br>
+
+        <label>Purpose:</label><br>
+        <textarea name="purpose">{{ visitor.purpose|default:'' }}</textarea><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email" value="{{ visitor.email|default:'' }}"><br><br>
+
+        <button type="submit">{% if edit %}Update{% else %}Submit{% endif %}</button>
+    </form>
+
+    <a href="{% url 'visitor_list' %}">← Back to List</a>
+</body>
+</html>
