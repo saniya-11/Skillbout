@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood Changer App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      transition: background-color 0.5s ease;
+      padding: 50px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .emoji {
+      font-size: 100px;
+      margin: 20px 0;
+    }
+
+    .mood-buttons button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>How are you feeling today?</h1>
+
+  <div class="emoji" id="emoji">🙂</div>
+  <p id="message">Select a mood below.</p>
+
+  <div class="mood-buttons">
+    <button onclick="changeMood('happy')">😊 Happy</button>
+    <button onclick="changeMood('sad')">😢 Sad</button>
+    <button onclick="changeMood('angry')">😠 Angry</button>
+    <button onclick="changeMood('sleepy')">😴 Sleepy</button>
+    <button onclick="changeMood('excited')">🤩 Excited</button>
+  </div>
+
+  <script>
+    function changeMood(mood) {
+      const emoji = document.getElementById('emoji');
+      const message = document.getElementById('message');
+
+      switch (mood) {
+        case 'happy':
+          document.body.style.backgroundColor = '#fff9c4';
+          emoji.innerText = '😊';
+          message.innerText = "Yay! You're feeling happy!";
+          break;
+
+        case 'sad':
+          document.body.style.backgroundColor = '#bbdefb';
+          emoji.innerText = '😢';
+          message.innerText = "Oh no! You're feeling sad.";
+          break;
+
+        case 'angry':
+          document.body.style.backgroundColor = '#ffcdd2';
+          emoji.innerText = '😠';
+          message.innerText = "Take a deep breath... 😤";
+          break;
+
+        case 'sleepy':
+          document.body.style.backgroundColor = '#e0f7fa';
+          emoji.innerText = '😴';
+          message.innerText = "Time for a nap? 🛌";
+          break;
+
+        case 'excited':
+          document.body.style.backgroundColor = '#f8bbd0';
+          emoji.innerText = '🤩';
+          message.innerText = "Woohoo! You're excited!";
+          break;
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dynamic DOM Example</title>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    }
+    h1, h2 {
+    color: darkblue;
+    }
+    .highlight {
+    background-color: lightyellow;
+    padding: 5px;
+    }
+    .myClass {
+        font-style: italic;
+        color: teal;
+    }
+    div {
+        margin-top: 10px;
+    }
+    
+</style>
+</head>
+<body>
+
+<h2 id="myId">Hello!</h2>
+<p class="myClass">Everybody</p>
+
+<h1 id="mainTitle">Welcome to this page</h1>
+<p id="text">This is the Instagram login page</p>
+
+<img id="myImage" 
+    src="https://static.vecteezy.com/system/resources/previews/018/910/697/original/instagram-mobile-app-logo-instagram-app-icon-ig-app-free-free-vector.jpg" 
+    alt="Original Image" width="100px" height="100px" />
+
+<br><br>
+<a id="myLink" href="https://instagram.com" target="_blank">Instagram</a>
+
+<div class="myClass">Div with class 'myClass'</div>
+<div>Just a div</div>
+
+<br>
+<button onclick="changeContent()">Change Content</button>
+
+<script>
+    function changeContent() {
+      // Change inner text
+    document.getElementById('text').innerText = "This is some changed text.";
+
+      // Change inner HTML
+    document.getElementById('mainTitle').innerHTML = "<div>Updated Title</div>";
+
+      // Change image source and alt
+    const img = document.getElementById('myImage');
+    img.src = "https://www.adgully.com/img/800/201704/myntra-logo.jpg";
+    img.alt = "Myntra";
+
+      // Change link href and text
+    const link = document.getElementById('myLink');
+    link.href = "https://www.myntra.com";
+    link.innerText = "Myntra";
+    }
+
+    // Style h2 by ID
+    const s = document.getElementById('myId');
+    s.style.color = 'mistyrose';
+
+    // Style elements with class "myClass"
+    const m = document.getElementsByClassName('myClass');
+    for (let i = 0; i < m.length; i++) {
+    m[i].style.fontWeight = 'bold';
+    }
+
+    // Add highlight to first .myClass using querySelector
+    const queryS = document.querySelector('.myClass');
+    queryS.classList.add('highlight');
+
+    // Add padding to all div.myClass
+    const querySelectAll = document.querySelectorAll('div.myClass');
+    querySelectAll.forEach(el => {
+    el.style.padding = '10px';
+    });
+
+    // Add border to all div elements
+    const k = document.getElementsByTagName('div');
+    for (let i = 0; i < k.length; i++) {
+    k[i].style.border = '2px solid slategray';
+    }
+</script>
+
+</body>
+</html>

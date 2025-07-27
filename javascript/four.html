@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #output{
+        margin-top: 15px;
+        padding: 10px;
+        border: 1px dotted lightpink;
+        background: #f2f2f2;
+    }
+    .message{
+        padding: 5px;
+        margin: 4px 0;
+        background-color: aquamarine;
+        border-radius: 4px;
+    }
+</style>
+<body>
+    <h2>Create & append Elements</h2>
+
+    <input type="text" id="userInput" placeholder="Enter a message">
+    <button onclick="addMessage()">Add Message</button>
+    <button onclick="prependMessage()">Prepend Message</button>
+    
+    <div id="output">
+        <p>Messages will appear here:</p>
+
+    </div>
+    <script>
+        function addMessage(){
+            const userInput=document.getElementById('userInput').value;
+            if(userInput.trim()=='') return;
+
+            const newDiv = document.createElement('div');
+            newDiv.className="message";
+            newDiv.innerText=userInput
+
+            document.getElementById('output').appendChild(newDiv)
+            document.getElementById('userInput').value = '';
+        }
+        function prependMessage(){
+            const userInput=document.getElementById('userInput').value;
+            if(userInput.trim()=='') return;
+
+            const newDiv = document.createElement('div');
+            newDiv.className="message";
+            newDiv.innerText=userInput
+
+            const container = document.getElementById('output')
+            container.insertBefore(newDiv,container.children[1]);
+            document.getElementById('userInput').value='';
+
+
+        }
+    </script>
+
+</body>
+</html>

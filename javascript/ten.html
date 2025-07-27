@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Click any item</h2>
+    <ul id="itemlist">
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+
+    </ul>
+    <button onclick="additem()">Add item</button>
+    <script>
+        const parent =document.getElementById('itemlist');
+        parent.addEventListener('click',function(e){
+            if(e.target && e.target.tagName=='LI'){
+                    alert("you clicked"+e,target.innerText)
+                    
+            }
+        
+        })
+        let item=4;
+        function additem(){
+            const li=document.createElement('li');
+            li.innerText="item" + item++;
+            parent.appendChild(li);
+
+        }
+        
+
+    </script>    
+</body>
+</html>

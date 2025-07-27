@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Digital Clock+Time‑zone Switcher</title>
+
+<!-- Minimal styling -->
+<style>
+   * { box-sizing: border-box; }
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e7f5c3;
+    font-family: monospace;
+    color: #0f0;
+}
+#html {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+select {
+    font-family: monospace;
+    font-size: 1rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+.clock {
+    font-size: 4rem;
+}
+</style>
+</head>
+<div id="html"></div>
+<script>
+    const container = document.getElementById('html');
+
+    const select = document.createElement('select');
+    container.appendChild(select);
+
+    const timeZones = [
+    { label: 'Local', value: Intl.DateTimeFormat().resolvedOptions().timeZone },
+    { label: 'UTC', value: 'UTC' },
+    { label: 'New York (US‑Eastern)', value: 'America/New_York' },
+    { label: 'London', value: 'Europe/London' },
+    { label: 'Berlin', value: 'Europe/Berlin' },
+    { label: 'Tokyo', value: 'Asia/Tokyo' },
+    { label: 'Sydney', value: 'Australia/Sydney' }
+    ];
+
+    for (const { label, value } of timeZones) {
+    const opt = document.createElement('option');
+    opt.textContent = label;
+    opt.value = value;
+    select.appendChild(opt);
+    }
+
+    const span = document.createElement('span');
+    span.className = 'clock';
+    container.appendChild(span);
+
+    let currentTz = select.value;
+
+    const format = {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+    timeZone: currentTz
+    };
+
+    function updateClock() {
+      format.timeZone = currentTz; // Update format timeZone dynamically
+    const nowStr = new Intl.DateTimeFormat('en-GB', format).format(new Date());
+    span.textContent = nowStr;
+    }
+
+    select.addEventListener('change', function () {
+    currentTz = select.value;
+    updateClock();
+    });
+
+    setInterval(updateClock, 1000);
+    updateClock(); 
+</script>
+</body>
+</html>

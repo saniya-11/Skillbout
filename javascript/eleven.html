@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Target Box</title>
+</head>
+<body>
+    <button id="triggerbtn">Trigger Custom Event</button>
+    <div id="targetbox" style="padding:10px; margin-top:10px; border:1px solid black;">
+        Waiting for custom event...
+    </div>
+
+    <script>
+        const target = document.getElementById('targetbox');
+
+        target.addEventListener('hello', function(e) {
+            target.innerText = 'Custom event triggered! Hello ' + e.detail.name;
+        });
+
+        document.getElementById('triggerbtn').addEventListener("click", function() {
+            const customEvent = new CustomEvent("hello", {
+                detail: { name: 'sanuuu' }
+            });
+            target.dispatchEvent(customEvent);
+        });
+    </script>
+</body>
+</html>

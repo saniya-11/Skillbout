@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changing Content and Attributes Example</title>
+    <style>
+        .h1 {
+            color: chocolate;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="mainTitle">Original Title</h1>
+
+    <p id="text">This is some original text</p>
+
+    <img id="myImage" src="https://static.vecteezy.com/system/resources/previews/027/737/537/original/hand-drawing-cute-cat-on-transparent-background-png.png" alt="Original Image" width="100px" height="100px">
+
+    <a id="myLink" href="https://example.com" target="_blank">Go To Example</a>
+
+    <button onclick="changeContent()">Change Content</button>
+
+    <script>
+        function changeContent() {
+            // Change inner text
+            document.getElementById('text').innerText = "This is some changed text.";
+
+            // Change the inner HTML
+            document.getElementById('mainTitle').innerHTML = '<div>Updated Title</div>';
+
+            // Change the image source and alt
+            const img = document.getElementById('myImage');
+            img.src = 'https://www.pngmart.com/files/22/Cute-Sticker-PNG-Isolated-Pic.png';
+            img.alt = "Star";
+
+            // Change the link href and text
+            const link = document.getElementById('myLink');
+            link.href = 'https://www.instagram.com';
+            link.innerText = "Instagram";
+        }
+    </script>
+</body>
+</html>

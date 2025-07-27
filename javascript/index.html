@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    .myClass{
+        color:burlywood;
+    
+    }
+    .p{
+
+        font:italic;
+    }
+    .highlight{
+        background-color: beige;
+    }
+    .h2{
+        font:bold;
+    }
+</style>
+
+</head>
+
+<body>
+    <h2 id="myId">This is an element with Id</h2>
+    <p class="myClass">Paragraph 1 with class 'myClass'</p>
+    <p class="myClass">Paragraph 2 with class 'myClass'</p>
+    <div class="myClass">Div with class 'myClass' </div>
+    <div>Just a div</div>
+    <script>
+        const s=document.getElementById('myId');
+        s.style.color='mistyrose';
+        console.log(s)
+        const m=document.getElementsByClassName('myClass');
+        
+        for(let i;i<m.length;i++){
+            m[i].style.fontWeight='italic'
+        }
+        console.log(m)
+
+        const k=document.getElementsByTagName('div');
+        for(let i=0;i<k.length;i++){
+            k[i].style.border ='2px solid slategray'
+        }
+        console.log(k);
+
+        //4 query selctor
+        const queryS = document.querySelector('.myClass');
+        queryS.classList.add('highlight');
+        console.log(queryS);
+
+        // query selectorAll
+        const querySelectAll = document.querySelectorAll('div.myClass');
+        querySelectAll.forEach(el=> {
+            el.style.padding='10px'
+        });
+        console.log(querySelectAll);
+
+
+    </script>
+</body>
+</html>

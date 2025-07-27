@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery DOM Manipulation</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+    .highlight { color: red; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h2 id="title">Hello World</h2>
+<button id="changeText">Change Text</button>
+<button id="addClass">Add Class</button>
+<button id="toggleBox">Toggle Box</button>
+<button id="appendItem">Add Item</button>
+
+<div id="box" style="width: 100px; height: 50px; background: lightblue; margin-top: 10px;"></div>
+
+<ul id="myList">
+    <li>Item A</li>
+    <li>Item B</li>
+</ul>
+
+<script>
+    $('#changeText').click(function() {
+    $('#title').text("Text changed");
+    });
+
+    $('#addClass').click(function() {
+    $('#title').addClass("highlight");
+    });
+
+    $('#toggleBox').click(function() {
+    $('#box').toggle();
+    });
+
+    $('#appendItem').click(function() {
+    $('#myList').append("<li>Item added</li>");
+    });
+</script>
+
+</body>
+</html>

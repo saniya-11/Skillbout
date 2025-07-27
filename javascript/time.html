@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<h2>Login!</h2>
+<div id="mydiv"></div>
+
+<script>
+    function login() {
+    const login = document.getElementById("mydiv");
+
+    const username = document.createElement("input");
+    username.id = "username";
+    username.placeholder = "Enter username";
+
+    const br1 = document.createElement("br");
+
+    const password = document.createElement("input");
+    password.id = "password";
+    password.placeholder = "Enter password";
+
+    const br2 = document.createElement("br");
+
+    const submit = document.createElement("button");
+    submit.textContent = "Submit";
+    submit.onclick = validate;
+
+    login.appendChild(username);
+    login.appendChild(br1);
+    login.appendChild(password);
+    login.appendChild(br2);
+    login.appendChild(submit);
+    }
+
+    function validate() {
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    if (!username || !password) {
+        alert("All fields are required.");
+    } else {
+        alert("Form submitted!");
+        usernameField.value = "";
+        passwordField.value = "";
+
+    }
+    login.reset()
+
+    }
+    
+
+    login();
+</script>
+</body>
+</html>

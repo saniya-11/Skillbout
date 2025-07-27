@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    .output{
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid rgb(242, 185, 204);
+    }
+</style>
+</head>
+<body>
+    <h2>Try These Events</h2>
+
+    <button id="mybutton">Click ME</button><br><br>
+    <input type="'text" id="myInput" placeholder="Type something"><br>
+    <select id="mySelect">
+        <option value="">Choose Option</option>
+        <option value="apple">Apple</option>
+        <option value="banana">Banana</option>
+    </select><br><br>
+    <div id="hoverMe" style="width:150px;height:50px;background: rgb(242, 138, 154)">Hover Over Me</div>
+    <div class="output" id="output">Events will show here....</div>
+    <script>
+        const output=document.getElementById('output');
+        //click event
+        document.getElementById('mybutton').addEventListener('click',function(){
+            console.log("button clicked")
+
+
+        });
+
+        //key event (typing)
+        document.getElementById('myInput').addEventListener('keyup',function(e){
+
+            output.innerText="you typed" + e.target.value 
+        })
+
+        //chnage event
+        document.getElementById('mySelect').addEventListener('change',function(e){
+            output.innerText="you selected" + e.target.value
+        })
+
+        //mouseover event
+        document.getElementById('hoverMe').addEventListener('mouseover',function(e){
+            output.innerText="you hovered on box"
+
+        })
+
+    window.addEventListener('load',function(){
+        console.log("page fully loaded")
+    })
+
+    </script>
+
+</body>
+</html>

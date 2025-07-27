@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Registration Form</title>
+<style>
+    #mydiv {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid lightgray;
+    background-color: lavenderblush;
+    border-radius: 5px;
+    }
+    #mydiv input {
+    display: block;
+    margin: 10px 0;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid lavender;
+    border-radius: 4px;
+    }
+    #mydiv button {
+    padding: 10px;
+    width: 100%;
+    background-color: peachpuff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+    
+</style>
+</head>
+<body>
+
+<div id="mydiv">
+    <input type="text" placeholder="First Name" id="firstName">
+    <input type="text" placeholder="Last Name" id="lastName">
+    <input type="text" placeholder="Username" id="username">
+    <input type="email" placeholder="Email" id="email">
+    <input type="password" placeholder="Password" id="password">
+    <button onclick="submitForm()">Register</button>
+</div>
+
+<script>
+    function submitForm() {
+    const firstName = document.getElementById('firstName').value;
+    console.log('First Name:', firstName);
+
+    const lastName = document.getElementById('lastName').value;
+    console.log('Last Name:', lastName);
+
+    const username = document.getElementById('username').value;
+    console.log('Username:', username);
+
+    const email = document.getElementById('email').value;
+    console.log('Email:', email);
+
+    const password = document.getElementById('password').value;
+    console.log('Password:', password);
+
+    
+
+
+    }
+</script>
+
+</body>
+</html>
